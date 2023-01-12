@@ -1,0 +1,26 @@
+
+<% layout('layout/boilerplate') %>
+ <form action="/station" method="post">
+        <label for="name">Name of the station</label>
+        <input type="text" name="name" id="name">
+        
+        <label for="des">Description of the station</label>
+        <textarea name="description" id="des" cols="30" rows="5"></textarea>
+        
+        <label for="loc">Location of the station</label>
+        <input type="text" name="location" id="loc">
+        
+        <label for="fc">Fastcharging </label>
+        <select name="fastcharging" id="fc">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        
+        <button>Add</button>
+
+    </form>
+    <form action="/view" method="get">
+        <button >Back</button>
+    </form>
+
+

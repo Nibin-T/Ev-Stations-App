@@ -1,0 +1,21 @@
+<% layout('layout/boilerplate') %>
+    <h1><%=sta.name%></h1>
+    <img src="<%=sta.image%>" alt="">
+    <h6>Location: <%=sta.location%></h6>
+    <h6>Description: <%=sta.description%></h6>
+    <h6>Fastcharging: <%=sta.fastcharging%></h6>
+    <h6>Price:&#8377;<%=sta.price%></h6>
+    
+    <form action="/<%=sta.id%>/delete?_method=DELETE" method="post">
+        <button >Delete</button>
+    </form>
+    
+    <form action="/<%=sta.id%>/edit" method="get">
+        <button >Edit</button>
+    </form>
+    
+    <form action="/view" method="get">
+        <button >Back</button>
+    </form>
+
+

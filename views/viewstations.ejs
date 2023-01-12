@@ -1,0 +1,31 @@
+<% layout('layout/boilerplate') %>
+    <h1>All stations</h1>
+    <% for(let station of stations){%>
+        <div class="card-group">
+            <div class="card">
+              <img class="card-img-top" src="<%=station.image%>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%=station.name%></h5>
+                <p class="card-text"><%=station.description%></p>
+                <a href="/station/<%=station.id%>" class="btn btn-outline-success">Go somewhere</a>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="<%=station.image%>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%=station.name%></h5>
+                <p class="card-text"><%=station.name%></p>
+                <a href="/station/<%=station.id%>" class="btn btn-outline-success">Go somewhere</a>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="<%=station.image%>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%=station.name%></h5>
+                <p class="card-text"><%=station.name%></p>
+                <a href="/station/<%=station.id%>" class="btn btn-outline-success">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+    <%}%>
+    
