@@ -1,26 +1,35 @@
 
 <% layout('layout/boilerplate') %>
- <form action="/station" method="post">
-        <label for="name">Name of the station</label>
-        <input type="text" name="name" id="name">
-        
-        <label for="des">Description of the station</label>
-        <textarea name="description" id="des" cols="30" rows="5"></textarea>
-        
-        <label for="loc">Location of the station</label>
-        <input type="text" name="location" id="loc">
-        
-        <label for="fc">Fastcharging </label>
-        <select name="fastcharging" id="fc">
+
+<form action="/station" method="post" class="row g-3">
+    <div class="col-12">
+        <label for="name" class="form-label">Name of the station</label>
+        <input type="text" name="name" id="name" class="form-control">
+    </div>
+    <div class="col-12">
+        <label for="des" class="form-label">Description of the station</label>
+        <textarea name="description" id="des" cols="30" rows="5" class="form-control"></textarea>
+    </div>
+    <div class="col-12">
+        <label for="loc" class="form-label">Location of the station</label>
+        <input type="text" name="location" id="loc" class="form-control">
+    </div>
+    <div class="col-12">
+        <label for="fc" class="form-label">Fastcharging </label>
+        <select name="fastcharging" id="fc" class="form-select">
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
-        
-        <button>Add</button>
-
-    </form>
-    <form action="/view" method="get">
-        <button >Back</button>
-    </form>
+    </div>
+    <div class="col-12">
+        <button  class="btn btn-outline-success" >Add</button>
+    </div>
+</form>
+<br>
+<form action="/view" method="get" class="row g-3">
+    <div class="col-12">
+        <button class="btn btn-outline-success">Back</button>
+    </div>
+</form>
 
 
