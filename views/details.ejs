@@ -1,21 +1,67 @@
 <% layout('layout/boilerplate') %>
-    <h1><%=sta.name%></h1>
-    <img src="<%=sta.image%>" alt="">
-    <h6>Location: <%=sta.location%></h6>
-    <h6>Description: <%=sta.description%></h6>
-    <h6>Fastcharging: <%=sta.fastcharging%></h6>
-    <h6>Price:&#8377;<%=sta.price%></h6>
-    
-    <form action="/<%=sta.id%>/delete?_method=DELETE" method="post">
-        <button >Delete</button>
-    </form>
-    
-    <form action="/<%=sta.id%>/edit" method="get">
-        <button >Edit</button>
-    </form>
-    
-    <form action="/view" method="get">
-        <button >Back</button>
-    </form>
+    <div class="row">
+        <div class="col-6 "">
+            <div class="card" >
+                <img src="<%=sta.image%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%=sta.name%></h5>
+                  <p class="card-text"><%=sta.description%></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Location : <%=sta.location%></li>
+                  <li class="list-group-item">Price : &#8377;<%=sta.price%></li>
+                  <li class="list-group-item">Fastcharging : <%=sta.fastcharging%></li>
+                  
+                </ul>
+                <div class="card-body gap-2 btn-group">
+                    <form action="/<%=sta.id%>/delete?_method=DELETE" method="post">
+                        <button  class="btn btn-danger">Delete</button>
+                    </form>
+                    
+                    <form action="/view" method="get">
+                        <button  class="btn btn-outline-warning">Back</button>
+                    </form>
+                    
+                    <form action="/<%=sta.id%>/edit" method="get">
+                        <button class="btn btn-outline-primary" >Edit</button>
+                    </form>
+                </div>
+              </div>
+        </div>
+        <div class="col-6">
+            
+                <form action="/reviews/<%=sta.id%>/" method="POST" >
+                    <div class="mb-3">
+                        <label class="form-label" for="comment">Comment</label>
+                        <input class="form-control" type="text" name="review[comment]" id="commment">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="rating">rating</label>
+                        <input class="form-range" type="range" min="1" max="5"  name="review[rating]" id="rating">
+                    </div>   
+                    <div class="mb-3">
+                        <button class="btn btn-success" >Submit review</button>
+                    </div>
+                </form>
+              
+
+
+          <% for(let rev of sta.review) { %>
+              <div class="card mb-3">
+                  <div class="card-body">
+                      <h5 class="card-title">Rating : <%=rev.rating%></h5>
+                      <p>Review : <%=rev.comment%></p>
+                      <form action="/stations/<%=sta.id%>/reviews/<%=rev.id%>?_method=DELETE" method="post">
+                        <button class="btn btn-danger" >Delete review</button>
+                    </form> 
+                      
+                   </div>
+              </div>
+          <% } %>
+
+        </div>
+              
+     </div>
+
 
 

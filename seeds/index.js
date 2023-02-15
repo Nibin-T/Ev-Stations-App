@@ -1,15 +1,21 @@
 const mongoose = require('mongoose');
 const station = require('../models/station')
+const reviews = require('../models/reviews')
 const {name,location,description,fastcharge} = require('./seedhelper');
-main().catch(err => console.log(err));
+mongoose.set('strictQuery', true);
+mongoose.connect('mongodb://localhost:27017/Ev-station')
+  .then(()=>{
+    console.log("Mongo connected")
+  })
+  .catch(err =>{
+    console.log("Error")
+  })
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Ev-station');
-}
 
 const seed = async () =>{
     await station.deleteMany({});
-    for(let i=0;i<3;i++){
+    await reviews.deleteMany({});
+    for(let i=0;i<2;i++){
         const sta = new station({
             name:`${name[Math.floor(Math.random() * 3)]}`,
             description:`${description[Math.floor(Math.random() * 3)]}`,
@@ -23,4 +29,10 @@ const seed = async () =>{
 }
 
 
-seed();
+seed()
+  .then(()=>{
+    console.log("Data Seeded");
+  })
+  .catch(err=>{
+    console.log(err);
+  })
