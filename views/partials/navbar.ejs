@@ -1,15 +1,24 @@
 <nav class="navbar navbar-light bg-success navbar-expand-sm bg-body-light ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Ev-Station</a>
+      <a class="navbar-brand" href="/">Ev-Station</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" href="/">Home</a>
-          <a class="nav-link" href="/view">Stations</a>
-          <a class="nav-link" href="/add">Add Station</a>
+          <a class="nav-link" href="/stations/view">Stations</a>
+          <a class="nav-link" href="/stations/add">Add Station</a>
           
+        </div>
+        <div class="navbar-nav">
+          <% if(!currentUser) {%>
+            <a class="nav-link active" href="/user/login">Login</a>
+            <a class="nav-link" href="/user/signup">Sign up </a>
+          <%} else {%>
+          
+            <a class="nav-link" href="/user/logout">Logout</a>
+          <%}%>
         </div>
       </div>
     </div>

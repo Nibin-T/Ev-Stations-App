@@ -1,12 +1,13 @@
 <% layout('layout/boilerplate') %>
     <h1>All stations</h1>
+    
     <% for(let station of stations){%>
       <div class="card xs-3" >
         <img src="<%=station.image%>" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%=station.name%></h5>
           <p class="card-text"><%=station.description%></p>
-          <a href="station/<%=station.id%>" class="btn btn-outline-success">View details</a>
+          <a href="/stations/<%=station.id%>" class="btn btn-outline-success">View details</a>
         </div>
       </div>
     <%}%>

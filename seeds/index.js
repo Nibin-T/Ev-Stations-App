@@ -15,8 +15,9 @@ mongoose.connect('mongodb://localhost:27017/Ev-station')
 const seed = async () =>{
     await station.deleteMany({});
     await reviews.deleteMany({});
-    for(let i=0;i<2;i++){
+    for(let i=0;i<10;i++){
         const sta = new station({
+            author:'640df302a4626651bf6ce37a',
             name:`${name[Math.floor(Math.random() * 3)]}`,
             description:`${description[Math.floor(Math.random() * 3)]}`,
             location:`${location[Math.floor(Math.random() * 3)]}`,
@@ -32,6 +33,7 @@ const seed = async () =>{
 seed()
   .then(()=>{
     console.log("Data Seeded");
+    mongoose.connection.close();
   })
   .catch(err=>{
     console.log(err);

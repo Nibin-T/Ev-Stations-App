@@ -1,5 +1,5 @@
 <% layout('layout/boilerplate') %>
-    <form action="/station/<%=sta.id%>?_method=PUT" method="post" class="row g-3 needs-validation" novalidate>
+    <form action="/stations/<%=sta.id%>?_method=PUT" method="post" class="row g-3 needs-validation" novalidate>
         <div class="col-12">
             <label for="name"  class="form-label">Name of the station</label>
             <input type="text" name="name" id="name" class="form-control" value="<%=sta.name%>" required>

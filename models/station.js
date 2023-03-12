@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Review = require('./reviews');
-
-
+const User = require('./user');
 
 const Schema = mongoose.Schema;
 
@@ -12,6 +11,8 @@ const station = new Schema({
     price:Number,
     location:String,
     fastcharging:Boolean,
+    author: {type:mongoose.Schema.Types.ObjectId , ref:'User'},
+        
     review:[
         {type:mongoose.Schema.Types.ObjectId , ref:'Review'}
     ]
@@ -29,3 +30,5 @@ station.post('findOneAndDelete',async function (doc) {
 
 
 module.exports = mongoose.model('Station',station)
+
+

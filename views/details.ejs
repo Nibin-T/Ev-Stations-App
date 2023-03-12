@@ -11,10 +11,11 @@
                   <li class="list-group-item">Location : <%=sta.location%></li>
                   <li class="list-group-item">Price : &#8377;<%=sta.price%></li>
                   <li class="list-group-item">Fastcharging : <%=sta.fastcharging%></li>
+                  <li class="list-group-item"> Submitted by : <%=sta.author.username%></li>
                   
                 </ul>
                 <div class="card-body gap-2 btn-group">
-                    <form action="/<%=sta.id%>/delete?_method=DELETE" method="post">
+                    <form action="/stations/<%=sta.id%>/delete?_method=DELETE" method="post">
                         <button  class="btn btn-danger">Delete</button>
                     </form>
                     
@@ -22,7 +23,7 @@
                         <button  class="btn btn-outline-warning">Back</button>
                     </form>
                     
-                    <form action="/<%=sta.id%>/edit" method="get">
+                    <form action="/stations/<%=sta.id%>/edit" method="get">
                         <button class="btn btn-outline-primary" >Edit</button>
                     </form>
                 </div>
@@ -30,7 +31,7 @@
         </div>
         <div class="col-6">
             
-                <form action="/reviews/<%=sta.id%>/" method="POST" >
+                <form action="/reviews/stations/<%=sta.id%>/" method="POST" >
                     <div class="mb-3">
                         <label class="form-label" for="comment">Comment</label>
                         <input class="form-control" type="text" name="review[comment]" id="commment">
@@ -51,7 +52,7 @@
                   <div class="card-body">
                       <h5 class="card-title">Rating : <%=rev.rating%></h5>
                       <p>Review : <%=rev.comment%></p>
-                      <form action="/stations/<%=sta.id%>/reviews/<%=rev.id%>?_method=DELETE" method="post">
+                      <form action="/reviews/stations/<%=sta.id%>/<%=rev.id%>?_method=DELETE" method="post">
                         <button class="btn btn-danger" >Delete review</button>
                     </form> 
                       
