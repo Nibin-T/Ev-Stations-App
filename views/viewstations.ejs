@@ -3,7 +3,9 @@
     
     <% for(let station of stations){%>
       <div class="card xs-3" >
-        <img src="<%=station.image%>" class="card-img-top" alt="...">
+          <% if(station.images.length > 0) { %>
+              <img src="<%=station.images[0].url%>" class="card-img-top" >
+          <% } %>
         <div class="card-body">
           <h5 class="card-title"><%=station.name%></h5>
           <p class="card-text"><%=station.description%></p>

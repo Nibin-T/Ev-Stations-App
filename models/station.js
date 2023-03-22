@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
-const Review = require('./reviews');
-const User = require('./user');
+const Review  = require('./reviews');
+
+
 
 const Schema = mongoose.Schema;
 
 const station = new Schema({
     name:String,
+        
     description:String,
-    image:String,
+    images:[
+        {
+            url : String,
+            filename : String
+        }
+    ],
     price:Number,
     location:String,
     fastcharging:Boolean,

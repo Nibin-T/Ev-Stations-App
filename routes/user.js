@@ -3,10 +3,6 @@ const passport = require('passport');
 const router = express.Router();
 const User = require('../models/user')
 
-
-
-
-
 router.get('/signup',(req,res)=>{
     res.render('signup')
 })
@@ -47,6 +43,6 @@ router.get('/logout', function(req, res, next){
       res.redirect('/stations/view')
       
     });
-  });
+});
 
 module.exports = router;
