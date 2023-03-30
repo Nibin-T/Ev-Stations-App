@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const station = require('../models/station')
 const reviews = require('../models/reviews')
-const {name,location,description,fastcharge} = require('./seedhelper');
+const {name,description,fastcharge,geo} = require('./seedhelper');
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://localhost:27017/Ev-station')
   .then(()=>{
@@ -11,17 +11,25 @@ mongoose.connect('mongodb://localhost:27017/Ev-station')
     console.log("Error")
   })
 
-
 const seed = async () =>{
     await station.deleteMany({});
     await reviews.deleteMany({});
-    for(let i=0;i<1;i++){
+    for(let i=0;i<100;i++){
+       let x = geo[[Math.floor(Math.random() * 50)]]
         const sta = new station({
             author:'640df302a4626651bf6ce37a',
-            name:`${name[Math.floor(Math.random() * 3)]}`,
-            description:`${description[Math.floor(Math.random() * 3)]}`,
-            location:`${location[Math.floor(Math.random() * 3)]}`,
+            name:`${name[Math.floor(Math.random() * 100)]}`,
+            description:`${description[Math.floor(Math.random() * 9)]}`,
+            location:x.city,
             fastcharging:`${fastcharge[Math.floor(Math.random() * 1)]}`,
+            geometry: {
+               type: 'Point', 
+               coordinates: [ 
+                  x.longitude,
+                  x.latitude
+              ] 
+              
+            },
             images: [
               {
                 url: 'https://res.cloudinary.com/dngiii3ow/image/upload/v1679203509/EVGrounds/vv2kwf9gi8ljppjcl6yo.jpg',

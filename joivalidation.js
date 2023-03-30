@@ -6,7 +6,8 @@ module.exports.stationValidate = function(req,res,next){
         price: Joi.number().min(0),
         description : Joi.string(), 
         location : Joi.string(), 
-        fastcharging : Joi.boolean()
+        fastcharging : Joi.boolean(),
+        deleteImages : Joi.array()
     }).required()
     const {error} = stationschema.validate(req.body)
     if(error){

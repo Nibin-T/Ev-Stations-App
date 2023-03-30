@@ -1,7 +1,7 @@
 <% layout('layout/boilerplate') %>
 <link rel="stylesheet" href="/stylesheet/stars.css">
 <div class="row">
-    <div class="col-6 "">
+    <div class="col-6 ">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <% sta.images.forEach((img,i) => {  %>
@@ -60,12 +60,13 @@
               </div>
         </div>
         <div class="col-6">
-            
+                <div id='map' style='width: 400px; height: 300px;'></div>
+
                 <form action="/reviews/stations/<%=sta.id%>/" method="POST" class="row g-3 needs-validation" novalidate>
                     <div class="mb-3">
                        
-                            <fieldset class="starability-basic">
-                            <legend> Leave a Rating:</legend>
+                        <legend> Leave a Rating:</legend>
+                        <fieldset class="starability-basic">
                             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
                             <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                             <label for="first-rate1" title="Terrible">1 star</label>
@@ -111,6 +112,25 @@
         </div>
               
      </div>
-
+</div>
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>'
+    const station = <%-JSON.stringify(sta)%>
+</script>
+<script src="/scripts/showmap.js"></script>
 
      
+
+
+
+
+
+
+
+
+
+
+
+
+
+

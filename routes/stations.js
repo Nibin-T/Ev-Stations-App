@@ -6,8 +6,10 @@ const multer = require('multer')
 const {storage} = require('../cloudinary')
 const upload = multer({storage})
 const {stationValidate} = require('../joivalidation');
-
-
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
+const mapBoxToken = process.env.MAPBOX_TOKEN
+const geocoder = mbxGeocoding({accessToken:mapBoxToken})
+const {cloudinary} = require("../cloudinary")
 
 router.get('/view' , async (req,res)=>{
     const stations = await station.find({});
@@ -20,12 +22,19 @@ router.get('/add', isLoggedIn ,(req,res)=>{
 
 router.post('/addnew',upload.array('image'),stationValidate,isLoggedIn,async (req,res)=>{
   
-  const sta = new station(req.body);
-  sta.images = req.files.map( f=>({url:f.path,filename:f.filename}) )
-  sta.author = req.user._id
-  await sta.save();
-  req.flash('success' , 'Added a station')
-  res.redirect('/stations/view');
+    const geoData = await geocoder.forwardGeocode({
+        query:req.body.location,
+        limit:1
+    }).send()
+    const sta = new station(req.body);
+    sta.geometry = geoData.body.features[0].geometry
+    sta.images = req.files.map( f=>({url:f.path,filename:f.filename}) )
+    sta.author = req.user._id
+    await sta.save();
+    req.flash('success' , 'Added a station')
+    res.redirect('/stations/view');
+    
+    
 
 })
 
@@ -70,6 +79,14 @@ router.put('/:id' ,upload.array('image'),stationValidate,async (req,res)=>{
     
     const images = req.files.map( f => ({url:f.path,filename:f.filename}))
     sta.images.push(...images)
+
+    if(req.body.deleteImages){
+      for(let filename of req.body.deleteImages){
+        await cloudinary.uploader.destroy(filename)
+      }
+      await sta.updateOne({$pull:{images:{filename:{$in:req.body.deleteImages}}}})
+    }
+
     await sta.save();
     req.flash('success' , 'updated a station')
 

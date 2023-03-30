@@ -2,7 +2,7 @@
     'use strict'
 
     
-    var forms = document.querySelectorAll('.needs-validation')
+    var forms = document.querySelectorAll('.validated-form')
 
   
     Array.prototype.slice.call(forms)
